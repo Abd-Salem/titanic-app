@@ -22,7 +22,7 @@ COLORS = {"Died": "#D95D4A", "Survived": "#0F766E"}
 
 
 st.title("Titanic app")
-st.image('titanic_app/utils/titanic.jpeg')
+st.image('utils/titanic.jpeg')
 
 
 show_data = st.checkbox("Show data")
