@@ -35,7 +35,7 @@ if show_data:
 
 
 classes = st.multiselect("Select classes", df["class"].unique(), default=df["class"].unique())
-gender = st.radio("Select gender", ["male", "female", "All"], horizontal=True)
+gender = st.radio("Select gender", ["All", "Male", "Female"], horizontal=True)
 
 if gender == "All":
     data = df[df["class"].isin(classes)]
