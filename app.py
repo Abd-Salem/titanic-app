@@ -32,20 +32,25 @@ show_data = st.checkbox("Show data")
 if show_data:
     st.dataframe(df.head(10), hide_index=True)
 
+
+
 classes = st.multiselect("Select classes", df["class"].unique(), default=df["class"].unique())
-gender = st.radio("Select gender", ["male", "female"], horizontal=True)
+gender = st.radio("Select gender", ["male", "female", "All"], horizontal=True)
 
-data = df[(df["class"].isin(classes)) & (df["sex"] == gender)]
+if gender == "All":
+    data = df[df["class"].isin(classes)]
+else:
+    data = df[(df["class"].isin(classes)) & (df["sex"] == gender)]
 
-total = len(data)
-survived_rate = (data["survival"] == "survived").mean() * 100 if total else 0
-
-c1, c2, c3, c4 = st.columns(4)
-
-c1.metric("Total Passengers", total)
-c2.metric("Survival Rate", f"{survived_rate:.1f}%")
-c3.metric("Median Age", round(data["age"].median(), 1))
-c4.metric("Median Fare", round(data["fare"].median(), 1))
+c1_1, c2_1, c3_1, c4_1 = st.columns(4)
+with c1_1:
+    st.metric("Total passengers", len(data))
+with c2_1:
+    st.metric("Survived Rate", f"{len(data[data['survival'] == 'Survived']) / len(data) * 100:.1f}%")
+with c3_1:
+    st.metric("Median Age", round(data["age"].median(), 1))
+with c4_1:
+    st.metric("Median Fare", round(data["fare"].median(), 1))
 
 
 fig1 = plot_family_size(data)
