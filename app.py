@@ -23,7 +23,7 @@ COLORS = {"Died": "#D95D4A", "Survived": "#0F766E"}
 
 st.title("Titanic app")
 st.image('utils/titanic.jpeg')
-
+st.set_page_config(layout='wide')
 
 show_data = st.checkbox("Show data")
 if show_data:
