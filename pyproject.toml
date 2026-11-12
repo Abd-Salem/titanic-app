@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-titanic-app = "titanic_app:main"
+titanic-app = "titanic_app:app"
 
 [browser]
 gatherUsageStats = false
