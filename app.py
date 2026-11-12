@@ -23,7 +23,7 @@ st.title("Titanic Explorer")
 
 left, mid, right = st.columns([1, 2, 1])
 with mid:
-    st.image('Titanic Explorer', use_container_width=True)
+    st.image('utils/titanic.jpeg', use_container_width=True)
 
 
 st.set_page_config(layout='wide')
