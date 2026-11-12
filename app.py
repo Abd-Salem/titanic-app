@@ -1,15 +1,12 @@
 import streamlit as st
+
 import pandas as pd
 import plotly.express as px
 import plotly.io as pio
-from pathlib import Path
-
-DATA = Path(__file__).parent / "data" / "titanic.csv"
-df = pd.read_csv(DATA)
 
 pio.renderers.default = "plotly_mimetype+notebook_connected"   # plotly.js is loaded from the internet: the saved notebook stays small
 
-df = pd.read_csv(r"/home/abdallah/workspace/iti-courses/data-exp-prep-vis/labs/streamlit/titanic_app/data/titanic.csv")
+df = pd.read_csv("data/titanic.csv")
 df.columns = df.columns.str.lower()
 df["class"] = df["pclass"].map({1: "First", 2: "Second", 3: "Third"})
 df["survival"] = df["survived"].map({0: "Died", 1: "Survived"})
