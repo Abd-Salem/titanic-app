@@ -19,7 +19,7 @@ df["age_group"] = pd.cut(df["age"], [0, 12, 18, 35, 60, 80],
                          labels=["child", "teen", "young adult", "adult", "senior"])
 
 
-st.title("Titanic Explorer")
+st.title("Titanic Explorer", text_alignment='center')
 
 left, mid, right = st.columns([1, 2, 1])
 with mid:
@@ -37,20 +37,15 @@ gender = st.radio("Select gender", ["male", "female"], horizontal=True)
 
 data = df[(df["class"].isin(classes)) & (df["sex"] == gender)]
 
-c1_metric, c2_metric, c3_metric, c4_metric = st.columns(4)
+total = len(data)
+survived_rate = (data["survival"] == "survived").mean() * 100 if total else 0
 
-with c1_metric:
-    st.metric(f'Total Passengers: {len(data)}')
+c1, c2, c3, c4 = st.columns(4)
 
-with c2_metric:
-    st.metric(f'Survived Rate: {len(data[data['survival'] == 'survived']) / len(df) * 100:.1f}')
-
-
-with c3_metric:
-    st.metric(f"Medium Age: {round(df['age'].median(), 1)}")
-
-with c4_metric:
-    st.metric(f'Median Fare: {round(df['fare'].median(), 1)}')
+c1.metric("Total Passengers", total)
+c2.metric("Survival Rate", f"{survived_rate:.1f}%")
+c3.metric("Median Age", round(data["age"].median(), 1))
+c4.metric("Median Fare", round(data["fare"].median(), 1))
 
 
 fig1 = plot_family_size(data)
