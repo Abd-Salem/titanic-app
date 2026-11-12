@@ -16,3 +16,11 @@ def plot_outcome(data):
                 color_discrete_map=COLORS, title="Died vs survived")
 
     return fig
+
+def plot_heatmap(data):
+    rate = data.pivot_table(index="sex", columns="class", values="survived", aggfunc="mean")
+
+    fig = px.imshow(rate, text_auto=".0%", zmin=0, zmax=1, color_continuous_scale="Teal",
+                    labels={"x": "Class", "y": "Sex", "color": "Survival rate"},
+                    title="Survival rate by sex and class")
+    return fig

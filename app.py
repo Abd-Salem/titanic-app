@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.io as pio
 from utils.data import load_data
-from utils.figures import plot_family_size, plot_outcome
+from utils.figures import plot_family_size, plot_outcome, plot_heatmap
 
 pio.renderers.default = "plotly_mimetype+notebook_connected"   # plotly.js is loaded from the internet: the saved notebook stays small
 
@@ -58,6 +58,22 @@ st.plotly_chart(fig1, use_container_width=True)
 
 fig2 = plot_outcome(data)
 st.plotly_chart(fig2, use_container_width=True)
+
+
+
+tab1, tab2 = st.tabs(['heatmap', 'Family size Vs outcome'])
+
+with tab1:
+    c1, c2 = st.columns(2)
+
+    with c1:
+        st.plotly_chart(plot_family_size(data), use_container_width=True)
+    with c2:
+        st.plotly_chart(plot_outcome(data), use_container_width=True)
+
+with tab2:
+
+    st.plotly_chart(plot_heatmap(data), use_conainers_width=True)
 
 
 # c1,c2 = st.columns(2)
