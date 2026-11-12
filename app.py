@@ -20,7 +20,7 @@ df["age_group"] = pd.cut(df["age"], [0, 12, 18, 35, 60, 80],
 
 
 
-st.title("Titanic app")
+st.title("Titanic Explorer")
 st.image('utils/titanic.jpeg')
 st.set_page_config(layout='wide')
 
