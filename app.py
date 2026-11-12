@@ -1,8 +1,11 @@
 import streamlit as st
-
 import pandas as pd
 import plotly.express as px
 import plotly.io as pio
+from pathlib import Path
+
+DATA = Path(__file__).parent / "data" / "titanic.csv"
+df = pd.read_csv(DATA)
 
 pio.renderers.default = "plotly_mimetype+notebook_connected"   # plotly.js is loaded from the internet: the saved notebook stays small
 
